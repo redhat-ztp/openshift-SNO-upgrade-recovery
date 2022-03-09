@@ -378,7 +378,9 @@ func (c Client) CheckStatus(resourceType string, clusterName string, action stri
 	log.Debug("Found managedclusterview object")
 
 	// since we are using same function for verifying if the job launched or finished, the conditions will vary
-	var matchingCondition []string{}
+
+	var matchingCondition []string
+
 	if action == Complete {
 		matchingCondition = []string{"status", "result", "status", "conditions"}
 	} else {
