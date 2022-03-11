@@ -318,8 +318,8 @@ func (c Client) ManageObjects(clusterName string, template []ResourceTemplate, r
 				return nil, err
 			}
 			log.WithFields(log.Fields{"DeleteObject": "Done"}).Debugf("####### Successfully deleted the %s resource named: [%s] for cluster: %s #######", resourceType, items.ResourceName, clusterName)
-		
-      default:
+
+		default:
 			return nil, fmt.Errorf("no condition matched")
 		}
 	}
@@ -369,7 +369,6 @@ OuterLoop:
 func (c Client) CheckStatus(resourceType string, clusterName string, action string) error {
 
 	log.Debug("####### Checking status of kubernetes job #######")
-
 
 	clusterView, err := c.ManageObjects(clusterName, ViewCreateTemplates, resourceType, "get")
 	if err != nil {

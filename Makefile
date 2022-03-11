@@ -30,7 +30,7 @@ push-image: build-image
 
 .PHONY: build
 
-check: | verify golangci-lint check-shellcheck check-bashate check-markdownlint
+check: | verify golangci-lint check-shellcheck check-bashate check-markdownlint test
 .PHONY: check
 
 golangci-lint:
@@ -69,5 +69,8 @@ check-markdownlint:
 endif
 .PHONY: check-markdownlint
 
+test:
+	find . -name go.mod -not -path "*/vendor/*" -execdir go test -v -covermode=count -coverprofile=coverage.out  ./... \;
+.PHONY: test
 
 GO_TEST_PACKAGES :=./pkg/... ./cmd/...
